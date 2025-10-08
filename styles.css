@@ -1,0 +1,114 @@
+/* ===== GENERAL RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f9fafb;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== NAVBAR ===== */
+header {
+  background-color: #2563eb; /* Blue shade */
+  color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #f0f0f0;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #ffda79; /* Gold highlight */
+}
+
+.login-btn {
+  background-color: #facc15; /* Yellow */
+  border: none;
+  color: #111;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #ffe375;
+  transform: scale(1.05);
+}
+
+/* ===== RESPONSIVE NAVBAR ===== */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+/* ===== MAIN CONTENT (OPTIONAL HERO) ===== */
+.hero {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  color: #1e3a8a;
+}
+
+.hero p {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  margin-top: auto;
+  background-color: #1e3a8a;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer p span {
+  color: #facc15;
+  font-weight: 600;
+}
