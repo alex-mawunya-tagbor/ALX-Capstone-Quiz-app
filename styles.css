@@ -25,10 +25,16 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  background: #004aad;
+  color: white;
+  padding: 15px 40px;
+  position: fixed;      /* keeps it on top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
+
 
 .logo {
   font-size: 1.5rem;
@@ -51,7 +57,7 @@ header {
 }
 
 .nav-links li a:hover {
-  color: #ffda79; /* Gold highlight */
+  color: #ffb703;
 }
 
 .login-btn {
@@ -69,6 +75,212 @@ header {
   background-color: #ffe375;
   transform: scale(1.05);
 }
+
+/* ===== MAIN CONTENT ===== */
+
+.hero {
+  margin-top: 70px; /* same height as navbar */
+  background: linear-gradient(135deg, #0078ff, #00c6ff);
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+  min-height: 50vh;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+/* Start Quiz Button */
+.btn-primary {
+  display: inline-block;
+  padding: 14px 30px;
+  background: #ffb703;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #ffa600;
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+
+.btn-primary {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255, 183, 3, 0.4);
+  }
+  70% {
+    transform: scale(1.07);
+    box-shadow: 0 0 20px rgba(255, 183, 3, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255, 183, 3, 0.4);
+  }
+}
+
+
+/* === Registration Section ==== */
+
+.registration {
+  text-align: center;
+  background-color: #f4f9ff;
+  padding: 80px 20px;
+}
+
+.registration h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #0078ff;
+}
+
+.registration p {
+  max-width: 600px;
+  margin: 0 auto 40px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.registration-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.register-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 40px 25px;
+  width: 280px;
+  transition: transform 0.3s ease;
+}
+
+.register-card:hover {
+  transform: translateY(-8px);
+}
+
+.register-card h3 {
+  color: #0078ff;
+  margin-bottom: 10px;
+}
+
+.register-card p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.register-card .btn-primary,
+.register-card .btn-secondary {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background: #0078ff;
+  color: white;
+}
+
+.btn-secondary {
+  background: white;
+  border: 2px solid #0078ff;
+  color: #0078ff;
+}
+
+.btn-secondary:hover,
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+
+/* ===== LEADERBOARD PAGE ===== */
+.leaderboard-section {
+  max-width: 900px;
+  margin: 60px auto;
+  text-align: center;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.leaderboard-section h1 {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.subject-filter {
+  margin: 20px 0;
+}
+
+.subject-filter label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.subject-filter select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.leaderboard-table th {
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  text-transform: uppercase;
+}
+
+.leaderboard-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.leaderboard-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.leaderboard-table tr:hover {
+  background-color: #e9f2ff;
+}
+
+
 
 
 /* ===== ABOUT PAGE STYLING ===== */

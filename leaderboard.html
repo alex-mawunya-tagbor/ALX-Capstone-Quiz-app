@@ -24,8 +24,18 @@
   <!-- MAIN -->
   <main>
     <section class="leaderboard-section">
-      <h1>Top Learners</h1>
-      <p>See who’s leading the EduQuiz challenge!</p>
+      <h1>🏆 Top Learners</h1>
+      <p>Check who’s leading in each subject!</p>
+
+      <div class="subject-filter">
+        <label for="subjectSelect">Select Subject:</label>
+        <select id="subjectSelect">
+          <option value="Mathematics">Mathematics</option>
+          <option value="English">English</option>
+          <option value="Science">Science</option>
+          <option value="ICT">ICT</option>
+        </select>
+      </div>
 
       <table class="leaderboard-table">
         <thead>
@@ -36,25 +46,8 @@
             <th>Subject</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Akosua Mensah</td>
-            <td>95%</td>
-            <td>Mathematics</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Kwame Boateng</td>
-            <td>90%</td>
-            <td>ICT</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Efua Owusu</td>
-            <td>88%</td>
-            <td>Science</td>
-          </tr>
+        <tbody id="leaderboardBody">
+          <!-- Dynamic rows will appear here -->
         </tbody>
       </table>
     </section>
@@ -64,5 +57,7 @@
   <footer>
     <p>&copy; 2025 EduQuiz | Designed by Alex Mawunya Tagbor</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
