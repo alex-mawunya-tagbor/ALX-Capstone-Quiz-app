@@ -70,6 +70,100 @@ header {
   transform: scale(1.05);
 }
 
+
+/* ===== ABOUT PAGE STYLING ===== */
+
+.about-section {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 20px;
+  line-height: 1.7;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Main Title */
+.about-section h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* Paragraphs */
+.about-section p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+/* Mission and Vision sections */
+.mission, .vision {
+  background-color: #f8f9fc;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+  transition: transform 0.3s ease;
+}
+
+.mission:hover, .vision:hover {
+  transform: translateY(-5px);
+}
+
+.mission h2, .vision h2 {
+  color: #007bff;
+  margin-bottom: 10px;
+  font-size: 1.6rem;
+}
+
+/* Developer Section */
+.team {
+  background-color: #eef5ff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  margin-top: 40px;
+}
+
+.team h2 {
+  color: #0056b3;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+/* Developer Profile Layout */
+.developer-profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: left;
+}
+
+.developer-photo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #007bff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.developer-info {
+  max-width: 700px;
+}
+
+.developer-info p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+
 /* ===== RESPONSIVE NAVBAR ===== */
 @media (max-width: 768px) {
   .nav-links {
@@ -93,6 +187,28 @@ header {
   font-size: 1.1rem;
   color: #555;
 }
+
+
+/* ===== About ===== */
+
+  .about-section {
+    padding: 15px;
+  }
+
+  .developer-profile {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .developer-photo {
+    width: 150px;
+    height: 150px;
+  }
+
+  .about-section h1 {
+    font-size: 2rem;
+  }
+
 
 /* ===== FOOTER ===== */
 footer {
