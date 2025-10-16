@@ -312,6 +312,260 @@ header {
 }
 
 
+/* ===== TEACHER DASHBOARD PAGE ===== */
+
+.dashboard-container {
+  max-width: 1000px;
+  margin: 120px auto 60px auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  color: #004aad;
+  margin-bottom: 10px;
+}
+
+.dashboard-header p {
+  color: #333;
+  margin-bottom: 0.3rem;
+}
+
+.dashboard-header .info {
+  font-style: italic;
+  color: #777;
+}
+
+/* ==== Add Question Form ==== */
+.add-question-section {
+  background-color: #f4f8ff;
+  border-left: 5px solid #004aad;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.add-question-section h2 {
+  color: #004aad;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.question-form .form-group {
+  margin-bottom: 1.2rem;
+}
+
+.question-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #222;
+}
+
+.question-form select,
+.question-form textarea,
+.question-form input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+
+.question-form select:focus,
+.question-form textarea:focus,
+.question-form input:focus {
+  border-color: #0078ff;
+  outline: none;
+}
+
+.question-form input[type="text"] {
+  margin-bottom: 0.6rem;
+}
+
+.btn-primary {
+  background-color: #004aad;
+  border: none;
+  color: #fff;
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+  transform: scale(1.05);
+}
+
+/* === QUIZ PAGE STYLES === */
+.quiz-container {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f9f9ff;
+  min-height: 100vh;
+}
+
+.intro h1 {
+  font-size: 2.5rem;
+  color: #4a4aff;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.quiz-setup {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.quiz-setup h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+select:focus {
+  border-color: #4a4aff;
+}
+
+.start-btn {
+  background: #4a4aff;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.start-btn:hover {
+  background: #3a3ae6;
+}
+
+/* QUIZ SECTION */
+#quizSection {
+  margin-top: 50px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.question-container {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.question-container p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.next-btn {
+  background: #ff7043;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.next-btn:hover {
+  background: #ff5722;
+}
+
+
+/* ==== Pending Questions Table ==== */
+.pending-section {
+  margin-top: 2.5rem;
+}
+
+.pending-section h2 {
+  color: #004aad;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  border-left: 5px solid #facc15;
+  padding-left: 10px;
+}
+
+.pending-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.pending-table th,
+.pending-table td {
+  padding: 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.pending-table th {
+  background-color: #004aad;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+}
+
+.pending-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.pending-table tr:hover {
+  background-color: #eef4ff;
+}
 
 
 /* ===== ABOUT PAGE STYLING ===== */
@@ -431,6 +685,25 @@ header {
   color: #555;
 }
 
+/* QUIZ SECTION */
+  .quiz-setup, #quizSection {
+    padding: 20px;
+  }
+
+  .intro h1 {
+    font-size: 2rem;
+  }
+
+/* ==== Teacher Dashboard ==== */
+  .dashboard-container {
+    width: 90%;
+    padding: 1.2rem;
+  }
+
+  .pending-table th,
+  .pending-table td {
+    font-size: 0.9rem;
+  }
 
 /* ===== About ===== */
 

@@ -1,7 +1,6 @@
 // =======================================================
 // ✅ EDUQUIZ APP MAIN JAVASCRIPT
-// Features: Login/Logout, Registration (Fixed IDs), Leaderboard, 
-// Secured Forgot Password (Email + Name Verification), Teacher Redirect Fix.
+// NEW: Teacher Dashboard Logic (Authentication, Add Questions, Display Pending)
 // =======================================================
 
 // ---------- DATA STRUCTURE SETUP ----------
@@ -12,17 +11,19 @@ const leaderboardData = JSON.parse(localStorage.getItem("eduQuizLeaderboard")) |
   { name: "Kwame Boateng", score: 90, subject: "ICT" },
   { name: "Efua Owusu", score: 88, subject: "Science" },
 ];
+// NEW: Storage for questions submitted by teachers, pending approval
+const pendingQuestions = JSON.parse(localStorage.getItem("pendingQuestions")) || []; 
 
 // ---------- SAVE FUNCTIONS ----------
 function saveData() {
   localStorage.setItem("learners", JSON.stringify(learners));
   localStorage.setItem("teachers", JSON.stringify(teachers));
   localStorage.setItem("eduQuizLeaderboard", JSON.stringify(leaderboardData));
+  localStorage.setItem("pendingQuestions", JSON.stringify(pendingQuestions)); // NEW SAVE
 }
 
-// ---------- DYNAMIC NAVBAR BUTTON FUNCTION (New/Updated) ----------
+// ---------- DYNAMIC NAVBAR BUTTON FUNCTION ----------
 function updateNavButtons() {
-    // Select all buttons with class 'login-btn' across all pages
     const navButtons = document.querySelectorAll('.login-btn');
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -32,7 +33,6 @@ function updateNavButtons() {
             button.onclick = () => {
                 localStorage.removeItem("currentUser");
                 alert("You have been logged out.");
-                // Redirect to the home page after logout
                 window.location.href = "index.html"; 
             };
         } else {
@@ -44,7 +44,7 @@ function updateNavButtons() {
     });
 }
 
-// ---------- SECURE FORGOT PASSWORD HANDLER (Reverted to Name Verification) ----------
+// ---------- SECURE FORGOT PASSWORD HANDLER ----------
 function handleForgotPassword() {
     const email = prompt("Enter your registered email address:");
     if (!email) return;
@@ -91,36 +91,136 @@ function handleForgotPassword() {
     }
 }
 
+// ---------- TEACHER DASHBOARD FUNCTIONS (NEW) ----------
 
-// ---------- REGISTRATION AND LOGIN HANDLERS (Updated to use IDs) ----------
+function checkTeacherAuth() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    // Check if user is logged in AND user is a teacher
+    if (!currentUser || currentUser.role !== 'teacher') {
+        alert("Access denied. Please log in as a teacher.");
+        window.location.href = "login.html";
+        return null;
+    }
+    return currentUser;
+}
+
+function displayPendingQuestions(currentUser) {
+    const tableBody = document.getElementById("pendingQuestions");
+    if (!tableBody) return;
+
+    tableBody.innerHTML = '';
+    
+    // Filter questions submitted by the current teacher
+    const teacherQuestions = pendingQuestions.filter(q => q.teacherEmail === currentUser.email);
+
+    if (teacherQuestions.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="4" style="text-align: center;">No pending questions submitted by you.</td></tr>';
+        return;
+    }
+
+    teacherQuestions.forEach((q, index) => {
+        const row = `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${q.subject}</td>
+                <td>${q.question.substring(0, 50)}...</td>
+                <td class="status-pending">${q.status}</td>
+            </tr>
+        `;
+        tableBody.insertAdjacentHTML("beforeend", row);
+    });
+}
+
+function handleAddQuestion(e, currentUser) {
+    e.preventDefault();
+
+    const subject = document.getElementById("subject").value;
+    const question = document.getElementById("question").value.trim();
+    const optionA = document.getElementById("optionA").value.trim();
+    const optionB = document.getElementById("optionB").value.trim();
+    const optionC = document.getElementById("optionC").value.trim();
+    const optionD = document.getElementById("optionD").value.trim();
+    const correctAnswer = document.getElementById("correctAnswer").value;
+
+    if (!subject || !question || !optionA || !optionB || !optionC || !optionD || !correctAnswer) {
+        alert("Please fill in all question fields.");
+        return;
+    }
+
+    const newQuestion = {
+        id: Date.now(), // Unique ID for question
+        teacherName: currentUser.name,
+        teacherEmail: currentUser.email,
+        subject: subject,
+        question: question,
+        options: { A: optionA, B: optionB, C: optionC, D: optionD },
+        correctAnswer: correctAnswer,
+        status: "Pending Review" 
+    };
+
+    pendingQuestions.push(newQuestion);
+    saveData();
+    alert("Question submitted successfully for review!");
+    document.getElementById("addQuestionForm").reset();
+    
+    // Refresh the table
+    displayPendingQuestions(currentUser);
+}
+
+
+// ---------- EVENT LISTENERS AND INITIALIZATION ----------
 document.addEventListener("DOMContentLoaded", () => {
+    
+  // Global Initialization
+  updateNavButtons();
+    
   const learnerForm = document.getElementById("learnerForm");
   const teacherForm = document.getElementById("teacherForm");
   const loginForm = document.getElementById("loginForm");
-  const forgotPasswordLink = document.getElementById("forgotPasswordLink"); // Used in login.html
+  const forgotPasswordLink = document.getElementById("forgotPasswordLink"); 
+  const addQuestionForm = document.getElementById("addQuestionForm"); // NEW
 
-  // Attach forgot password handler
+  // --- Teacher Dashboard Logic ---
+  if (window.location.pathname.includes("teacher-dashboard.html")) {
+    const currentUser = checkTeacherAuth(); // Enforce authentication
+
+    if (currentUser) {
+        // Update welcome message
+        const welcomeElement = document.getElementById("welcomeTeacher");
+        if (welcomeElement) {
+            welcomeElement.textContent = `Welcome, ${currentUser.name}!`;
+        }
+        
+        // Setup form submission
+        if (addQuestionForm) {
+            addQuestionForm.addEventListener("submit", (e) => handleAddQuestion(e, currentUser));
+        }
+
+        // Display submitted questions
+        displayPendingQuestions(currentUser);
+    }
+  }
+
+  // --- Authentication Handlers ---
   if (forgotPasswordLink) {
       forgotPasswordLink.addEventListener("click", (e) => {
           e.preventDefault();
           handleForgotPassword();
       });
   }
-
-  // ---- Learner Registration (FIXED: Now reads IDs) ----
+  
+  // ---- Learner Registration ----
   if (learnerForm) {
     learnerForm.addEventListener("submit", (e) => {
       e.preventDefault();
-
       const name = document.getElementById("learnerName") ? document.getElementById("learnerName").value.trim() : '';
       const email = document.getElementById("learnerEmail") ? document.getElementById("learnerEmail").value.trim() : '';
       const password = document.getElementById("learnerPassword") ? document.getElementById("learnerPassword").value.trim() : '';
 
       if (!name || !email || !password) {
-        alert("Please fill all registration fields."); // Changed alert for clarity
+        alert("Please fill all registration fields.");
         return;
       }
-
       const exists = learners.some((l) => l.email === email) || teachers.some((t) => t.email === email);
       if (exists) {
         alert("Account already exists with this email address!");
@@ -135,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ---- Teacher Registration (FIXED: Now reads IDs) ----
+  // ---- Teacher Registration ----
   if (teacherForm) {
     teacherForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -145,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("teacherPassword") ? document.getElementById("teacherPassword").value.trim() : '';
 
       if (!name || !email || !password) {
-        alert("Please fill all registration fields."); // Changed alert for clarity
+        alert("Please fill all registration fields.");
         return;
       }
 
@@ -163,7 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ---- Login (FIXED: Now reads IDs and handles redirect) ----
+  // ---- Login ----
   if (loginForm) {
     loginForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -181,16 +281,13 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (teacher) {
         localStorage.setItem("currentUser", JSON.stringify(teacher));
         alert(`Welcome ${teacher.name}!`);
-        // FIX: Redirect to index.html since teacher-dashboard.html is missing
-        window.location.href = "index.html"; 
+        // FIX: Redirect teachers to their new dashboard
+        window.location.href = "teacher-dashboard.html"; 
       } else {
         alert("Invalid email or password. Please try again.");
       }
     });
   }
-  
-  // Initialize dynamic buttons on page load
-  updateNavButtons();
 });
 
 // ---------- LEADERBOARD FUNCTIONS (Unchanged) ----------
@@ -218,7 +315,7 @@ function displayLeaderboard(subject) {
   });
 }
 
-// ---------- LEADERBOARD ACCESS + INITIALIZATION (Unchanged) ----------
+// ---------- LEADERBOARD ACCESS + INITIALIZATION ----------
 document.addEventListener("DOMContentLoaded", () => {
   // If the page is the leaderboard, ensure the user is logged in
   if (window.location.pathname.includes("leaderboard.html")) {
