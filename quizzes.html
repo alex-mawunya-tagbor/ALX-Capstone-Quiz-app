@@ -5,39 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EduQuiz - Start a Quiz</title>
     <link rel="stylesheet" href="styles.css"/>
+    <style>
+        /* Add basic styling for the hidden state (if not already in styles.css) */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Basic form group styling for presentation */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .quiz-setup select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        /* The styles for the button answers are critical. Ensure these are in your styles.css */
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .option-btn {
+            width: 100%;
+            padding: 15px;
+            text-align: left;
+            background-color: #f0f4f8;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+            font-size: 1rem;
+        }
+        
+        .option-btn:hover {
+            background-color: #e0e8f0;
+        }
+
+        /* The 'selected' class is used by the script to highlight your choice */
+        .option-btn.selected {
+            background-color: #007bff; /* Use your primary blue */
+            color: white;
+            border-color: #0056b3;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
-    <!-- HEADER -->
     <header>
-        <nav class="navbar">
-            <div class="logo">EduQuiz</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="quizzes.html" class="active">Quizzes</a></li>
-                <li><a href="leaderboard.html">Leaderboard</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-            <button class="login-btn">Login</button>
-        </nav>
-    </header>
+    <nav class="navbar">
+      <div class="logo">EduQuiz</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="quizzes.html">Quizzes</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle">☰</button> 
+      <button class="login-btn">Login</button>
+    </nav>
+  </header>
 
-    <!-- MAIN -->
     <main class="quiz-container">
-        <section class="intro">
+        <section class="intro" style="margin-top: 100px;">
             <h1>EduQuiz</h1>
             <p class="subtitle">Test your knowledge through fun and interactive quizzes</p>
         </section>
 
-        <section id="quizSetup" class="quiz-setup card">
+        <section id="quizSetup" class="quiz-setup auth-form"> 
             <h2>Select Your Level and Subject</h2>
             <form id="quizSelectionForm">
                 <div class="form-group">
                     <label for="level">Select Level:</label>
                     <select id="level" required>
                         <option value="">--Choose Level--</option>
-                        <option value="Basic 7">Basic 7</option>
-                        <option value="Basic 8">Basic 8</option>
-                        <option value="Basic 9">Basic 9</option>
+                        <option value="Basic 7">Basic 7 (Easy)</option>
+                        <option value="Basic 8">Basic 8 (Medium)</option>
+                        <option value="Basic 9">Basic 9 (Hard)</option>
                     </select>
                 </div>
 
@@ -52,19 +109,21 @@
                     </select>
                 </div>
 
-                <button type="submit" class="start-btn">Start Quiz</button>
+                <button type="submit" class="btn-primary start-btn">Start Quiz</button>
             </form>
         </section>
 
-        <section id="quizSection" class="hidden">
-            <h2 id="quizTitle"></h2>
-            <div id="questionContainer" class="question-container"></div>
-            <button id="nextBtn" class="next-btn">Next Question</button>
-            <div id="scoreContainer" class="hidden"></div>
+        <section id="quizSection" class="hidden auth-form">
+            <h2 id="quizTitle" style="text-align: center;"></h2>
+            <div id="questionContainer" class="question-container">
+                </div>
+            <button id="nextBtn" class="btn-primary next-btn">Next Question</button>
         </section>
+        
+        <section id="scoreContainer" class="hidden auth-form">
+            </section>
     </main>
 
-    <!-- FOOTER -->
     <footer>
         <p>&copy; 2025 EduQuiz | Designed by Alex Mawunya Tagbor</p>
     </footer>

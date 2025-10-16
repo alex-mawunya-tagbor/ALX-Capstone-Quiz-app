@@ -567,6 +567,121 @@ select:focus {
   background-color: #eef4ff;
 }
 
+/* === QUIZ PAGE STYLES === */
+.quiz-container {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f9f9ff;
+  min-height: 100vh;
+}
+
+.intro h1 {
+  font-size: 2.5rem;
+  color: #4a4aff;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.quiz-setup {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.quiz-setup h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+select:focus {
+  border-color: #4a4aff;
+}
+
+.start-btn {
+  background: #4a4aff;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.start-btn:hover {
+  background: #3a3ae6;
+}
+
+/* QUIZ SECTION */
+#quizSection {
+  margin-top: 50px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.question-container {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.question-container p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.next-btn {
+  background: #ff7043;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.next-btn:hover {
+  background: #ff5722;
+}
+
+
 
 /* ===== ABOUT PAGE STYLING ===== */
 
@@ -664,9 +779,47 @@ select:focus {
 /* ===== RESPONSIVE NAVBAR ===== */
 @media (max-width: 768px) {
   .nav-links {
-    display: none;
-  }
+        /* Hide the default horizontal menu */
+        display: none;
+        /* Position the menu for mobile overlay */
+        position: absolute;
+        top: 65px; /* Adjust this to be just below the navbar */
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: #004aad; /* Same as navbar */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links li {
+        text-align: center;
+        width: 100%;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links a {
+        padding: 15px 20px;
+        display: block; /* Make links fill the entire list item */
+    }
+
+    /* SHOW THE MENU WHEN THE 'active' CLASS IS ADDED BY JAVASCRIPT */
+    .nav-links.active {
+        display: flex;
+    }
 }
+
+/* HAMBURGER ICON */
+.menu-toggle {
+    display: none; /* Hide on desktop */
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+}
+
+
 
 /* ===== MAIN CONTENT (OPTIONAL HERO) ===== */
 .hero {
@@ -704,6 +857,16 @@ select:focus {
   .pending-table td {
     font-size: 0.9rem;
   }
+
+
+  .quiz-setup, #quizSection {
+    padding: 20px;
+  }
+
+  .intro h1 {
+    font-size: 2rem;
+  }
+
 
 /* ===== About ===== */
 
@@ -743,4 +906,9 @@ footer p {
 footer p span {
   color: #facc15;
   font-weight: 600;
+}
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
 }
