@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | EduQuiz</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">EduQuiz</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="quizzes.html">Quizzes</a></li>
+        <li><a href="#">Leaderboard</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="auth-section">
+    <h2>Login to EduQuiz</h2>
+    <form class="auth-form" id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Email" required />
+      <input type="password" id="loginPassword" placeholder="Password" required />
+      <button type="submit" class="btn-primary">Login</button>
+    </form>
+    
+    <p>
+        <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+    </p>
+
+    <p>Don’t have an account? <a href="learner-register.html">Register here</a></p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 EduQuiz | Designed by Alex Mawunya Tagbor</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
